@@ -54,7 +54,16 @@ export class User extends Component {
               <p>{bio}</p>
              </Fragment>)}
              <a href={html_url} className='btn btn-dark my-1'>Vist Github Profile</a>
-             <ul>
+             <div className='card text-center'>
+        <div className='badge badge-primary'>Followers: {followers}</div>
+        <div className='badge badge-success'>Following: {following}</div>
+        <div className='badge badge-light'>Public-repos: {public_repos}</div>
+        <div className='badge badge-dark'>Public-gists: {public_gists}</div>
+      </div>
+          </div>
+     </div>
+      
+      <ul>  
               <li>
                 {login && <Fragment>
                   <strong>Username:</strong> {login}
@@ -71,8 +80,6 @@ export class User extends Component {
                   </Fragment>}
               </li>
              </ul>
-          </div>
-     </div>
   </div>
 
     </Fragment>
