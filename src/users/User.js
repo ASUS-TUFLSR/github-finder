@@ -1,17 +1,23 @@
 import React, { Fragment,Component } from 'react'
 //import Spinner from '../layout/Spinner'//
+import Repos from '../components/repos/Repos'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
+
 
 export class User extends Component {
     componentDidMount(){
         this.props.getUser(this.props.match.params.login);
-    }
+        this.props.getUserRepos(this.props.match.params.login);
+
+      }
 
     static = {
       loading:PropTypes.bool,
+      repos:PropTypes.array.isRequired,
       user:PropTypes.func.isRequired,
-      getUser:PropTypes.func.isRequired
+      getUser:PropTypes.func.isRequired,
+      getUserRepos:PropTypes.func.isRequired
     }
 
   render() {
@@ -32,7 +38,7 @@ export class User extends Component {
             hireable
         } = this.props.user;
 
-        const {loading} = this.props;
+        const {loading , repos} = this.props;
 
        
 
@@ -69,20 +75,24 @@ export class User extends Component {
                   <strong>Username:</strong> {login}
                   </Fragment>}
               </li>
+
               <li>
                 {company && <Fragment>
                   <strong>company:</strong> {company}
                   </Fragment>}
               </li>
+
               <li>
                 {blog && <Fragment>
-                  <strong>blog:</strong> {blog}
+                  <strong>Website:</strong> {blog}
                   </Fragment>}
               </li>
              </ul>
   </div>
 
+    <Repos repos={repos}/>
     </Fragment>
+    
   }
 }
 
